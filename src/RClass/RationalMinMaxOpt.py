@@ -62,21 +62,24 @@ def checkVal(f, z, n, m, T, Tn, Tm, DLB, DUB, vrb, uH, uL):
 
 def RationalMinMaxOpt(f, n, m, pts, LB, UB=None, a=-1, b=1, prc=10^-15, vrb=0, *args, **kwargs):
     """
-    Calculating the uniform best rationl approx of type (n, m)
-    via optimization with deviation precision 'eps'.
+    Calculate the uniform best rational approximation of type (n,m)
+    via optimization with deviation precision 'eps'
+    
+    Elior Kalfon, Nir Sharon, Feb 2020
     
     Parameters:
-        f :the function to be approximated. A function handler.
-        n,m (int): the rational approx parameters = maximum degree (numer.,deno.)
-        pts (int) : discretization points
-        LB (int)  : lower bound on the denominator (away from zero)
-        UB (int)  : upper bound on the denominator
-	    prc (float) : precision of the bisection (maximum deviation accuracy)
-        vrb : flag for verbose run
-        
+        f: Function to be approximated
+        n, m: Rational approximation parameters (max degree of numerator, denominator)
+        pts: Discretization points
+        LB: Lower bound on denominator (away from zero)
+        UB: Upper bound on denominator
+        a, b: Interval bounds
+        prc: Precision of the bisection
+        vrb: Verbose flag
+    
     Returns:
-        p,q (int): the rational approx coefficients
-        z ()the maximal deviation
+        p, q: Rational approximation coefficients
+        z: Maximal deviation
     """
  
     # Upper bound on denominator (not necessary in general)
