@@ -1,0 +1,32 @@
+import numpy as np
+import pandas as pd
+
+
+
+def RationalMinMaxOpt(f, n, m, pts, LB, UB=None, a=-1, b=1, prc=10^-15, vrb=0, *args, **kwargs):
+    """
+    Calculating the uniform best rationl approx of type (n, m)
+    via optimization with deviation precision 'eps'.
+    
+    Parameters:
+        f :the function to be approximated. A function handler.
+        n,m (int): the rational approx parameters = maximum degree (numer.,deno.)
+        pts (int) : discretization points
+        LB (int)  : lower bound on the denominator (away from zero)
+        UB (int)  : upper bound on the denominator
+	    prc (float) : precision of the bisection (maximum deviation accuracy)
+        vrb : flag for verbose run
+        
+    Returns:
+        p,q (int): the rational approx coefficients
+        z ()the maximal deviation
+    """
+ 
+# Upper bound on denominator (not necessary in general)    
+if UB = None:
+    UB = 1000*LB
+
+# "Chebyshev" Vandermonde matrix
+I = np.eye(n)
+I(1) = 2
+
