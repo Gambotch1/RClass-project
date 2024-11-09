@@ -19,7 +19,7 @@ classifiers = [
 dependencies = [
     "numpy",
     "pandas",
-    "tqdm",
-    "yacs",
-    "pyyaml",
+    "matplotlib",
+    "scipy"
+
 ]
