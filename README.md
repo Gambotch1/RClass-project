@@ -23,6 +23,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 ## 3. Install the Package in Editable Mode
+Use the following command to install the package in editable mode. The -e flag makes the package editable, so any changes you make to the code will be immediately reflected.
 ```
 pip install -e .
 ```
