@@ -5,9 +5,7 @@ RClass is a classification framework based on rational function approximation. O
 ## Overview
 
 - **Classifier Approach:**  
-  Our classifier uses a rational function of the form
-![Equation](https://latex.codecogs.com/png.latex?R(x)%3D%5Cfrac%7Bp(x)%7D%7Bq(x)%7D)
-  where \(p(x)\) and \(q(x)\) are polynomials whose degrees can be tuned independently. Extensive experiments on the MNIST dataset have shown that a (2,1) configuration (numerator degree = 2, denominator degree = 1) often provides an optimal trade-off between accuracy and training time.
+  Our classifier uses a rational function of the form $R(x)=\frac{p(x)}{q(x)}$ where \(p(x)\) and \(q(x)\) are polynomials whose degrees can be tuned independently. Extensive experiments on the MNIST dataset have shown that a (2,1) configuration (numerator degree = 2, denominator degree = 1) often provides an optimal trade-off between accuracy and training time.
 
 - **Experimental Framework:**  
   The project includes a complete experimental pipeline:
