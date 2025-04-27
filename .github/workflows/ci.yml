@@ -7,36 +7,38 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Miniconda
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        auto-activate-base: false
-        python-version: 3.10
-        environment-file: environment.yml
-        activate-environment: rclass-project
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: 3.10
+          environment-file: environment.yml
+          activate-environment: rclass-project
+          use-mamba: true
 
-    - name: Install package
-      run: |
-        pip install -e .
+      - name: Install package
+        run: pip install -e .
 
-    - name: Run smoke test
-      run: |
-        python - << 'EOF'
-import numpy as np
-from rclass.data import load_mnist_train_and_test
-from rclass.features import preprocess_data, create_polynomial_features
-from rclass.bisection import solve_rational_approx_bisection
-# tiny sanity check
-X = np.random.rand(5,2)
-p_Phi = np.hstack([np.ones((5,1)), X])
-q_Phi = p_Phi
-f_c = np.array([1,0,1,0,1])
-solve_rational_approx_bisection(p_Phi, q_Phi, f_c, tolerance=1e-1)
-print("Smoke test passed")
-EOF
+      - name: Run smoke test
+        run: |
+          python - << 'EOF'
+          import numpy as np
+          from rclass.data import load_mnist_train_and_test
+          from rclass.features import preprocess_data, create_polynomial_features
+          from rclass.bisection import solve_rational_approx_bisection
+
+          # tiny sanity check
+          X = np.random.rand(5, 2)
+          p_Phi = np.hstack([np.ones((5,1)), X])
+          q_Phi = p_Phi
+          f_c  = np.array([1,0,1,0,1])
+          solve_rational_approx_bisection(p_Phi, q_Phi, f_c, tolerance=1e-1)
+          print("Smoke test passed")
+          EOF
