@@ -4,9 +4,9 @@ channels:
   - defaults
 dependencies:
   - python=3.10
-  - sage=10.4             # SageMath
-  - tensorflow=2.12       # or whichever TF version you're using
-  - gurobi                # this will pick up your Gurobi license
+  - sage=10.4               # SageMath
+  - tensorflow=2.12         # or whichever TF version you’re using
+  - gurobi                  # this will pick up your Gurobi license
   - numpy
   - scikit-learn
   - matplotlib
