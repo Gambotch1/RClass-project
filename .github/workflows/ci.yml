@@ -43,4 +43,7 @@ jobs:
                                           solver=is_feasible_for_z_sage,
                                           tolerance=1e-1)
           print("Smoke test passed")
-          EOF
+          
+      - name: Run unit tests
+        run: pytest --maxfail=1 --disable-warnings -q
+  
