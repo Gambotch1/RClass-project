@@ -9,5 +9,6 @@ dependencies:
   - tensorflow        # conda-forge’s CPU build
   - sage               # SageMath from conda-forge
   - pip
+  - pytest
   - pip:
       - gurobipy       # pip wheel only; license isn’t needed for import
