@@ -1,30 +1,23 @@
 name: CI
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          python-version: 3.10
           environment-file: environment.yml
           activate-environment: rclass-project
           use-mamba: true
-
       - name: Install package
         run: pip install -e .
-
       - name: Run smoke test
         run: |
           python - << 'EOF'
@@ -32,7 +25,6 @@ jobs:
           # Use Sage-based solver for CI to avoid Gurobi license issues
           from rclass.solver_sage import is_feasible_for_z_sage
           from rclass.bisection import solve_rational_approx_bisection
-
           # tiny sanity check
           X = np.random.rand(5,2)
           p_Phi = np.hstack([np.ones((5,1)), X])
@@ -43,7 +35,5 @@ jobs:
                                           solver=is_feasible_for_z_sage,
                                           tolerance=1e-1)
           print("Smoke test passed")
-          
       - name: Run unit tests
         run: pytest --maxfail=1 --disable-warnings -q
-  
