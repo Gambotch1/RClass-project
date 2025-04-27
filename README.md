@@ -2,7 +2,22 @@
 
 RClass is a classification framework based on rational function approximation. Our approach approximates complex decision boundaries by modeling the classifier as a ratio of two polynomials, offering an interpretable alternative to deep learning models. The project leverages SageMath, Gurobi (under an academic license), and various Python libraries for data processing and visualization.
 
-## Overview
+## Quickstart
+
+```bash
+  # 1. Clone the repo
+  git clone https://github.com/Gambotch1/RClass-project.git
+  cd RClass-project
+
+  # 2. Activate your conda env & install package
+  conda activate sage-gurobi
+  pip install -e .
+
+  # 3. Run the demo grid
+  python -m rclass.experiment
+```
+
+ Overview
 
 - **Classifier Approach:**  
   Our classifier uses a rational function of the form $R(x)=\frac{p(x)}{q(x)}$ where \(p(x)\) and \(q(x)\) are polynomials whose degrees can be tuned independently. Extensive experiments on the MNIST dataset have shown that a (2,1) configuration (numerator degree = 2, denominator degree = 1) often provides an optimal trade-off between accuracy and training time.
@@ -33,10 +48,3 @@ RClass is a classification framework based on rational function approximation. O
 - SageMath (version 14 or later recommended)
 - Gurobi Optimizer (with an academic license)
 - Common Python packages: `numpy`, `matplotlib`, `scikit-learn`, and `tensorflow` (for data loading)
-
-### Setup
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/Gambotch1/RClass-project.git
-   cd RClass
