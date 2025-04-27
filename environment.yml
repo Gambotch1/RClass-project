@@ -1,16 +1,13 @@
 name: rclass-project
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python=3.10
-  - sage=10.4               # SageMath
-  - tensorflow=2.12         # or whichever TF version you’re using
-  - gurobi                  # this will pick up your Gurobi license
   - numpy
   - scikit-learn
   - matplotlib
+  - tensorflow        # conda-forge’s CPU build
+  - sage               # SageMath from conda-forge
   - pip
   - pip:
-      - sagecell          # if you need any pip-only libs
-      - any-other-pypi-dep
+      - gurobipy       # pip wheel only; license isn’t needed for import

@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2
@@ -30,15 +29,18 @@ jobs:
         run: |
           python - << 'EOF'
           import numpy as np
-          from rclass.data import load_mnist_train_and_test
-          from rclass.features import preprocess_data, create_polynomial_features
+          # Use Sage-based solver for CI to avoid Gurobi license issues
+          from rclass.solver_sage import is_feasible_for_z_sage
           from rclass.bisection import solve_rational_approx_bisection
 
           # tiny sanity check
-          X = np.random.rand(5, 2)
+          X = np.random.rand(5,2)
           p_Phi = np.hstack([np.ones((5,1)), X])
           q_Phi = p_Phi
           f_c  = np.array([1,0,1,0,1])
-          solve_rational_approx_bisection(p_Phi, q_Phi, f_c, tolerance=1e-1)
+          # pass the Sage solver explicitly
+          solve_rational_approx_bisection(p_Phi, q_Phi, f_c,
+                                          solver=is_feasible_for_z_sage,
+                                          tolerance=1e-1)
           print("Smoke test passed")
           EOF
